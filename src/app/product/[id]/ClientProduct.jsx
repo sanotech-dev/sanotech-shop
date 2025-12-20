@@ -1,27 +1,9 @@
-import Image from 'next/image'
+'use client';
 
-async function getProduct(id) {
-  // بعداً از دیتابیس — الان فیک
-  const products = {
-    "1": {
-      name: "لپ‌تاپ گیمینگ Sanotech Pro",
-      price: "۸۵,۰۰۰,۰۰۰ تومان",
-      description: "لپ‌تاپ حرفه‌ای با RTX 4070، 32GB RAM، 1TB SSD",
-      image: "/laptop.jpg",
-      rating: 4.8,
-      reviews: 127
-    }
-  }
-  return products[id] || null
-}
+import { useCart } from '@/context/CartContext'
 
-export default async function ProductPage({ params }) {
-  const { id } = await params;  // این خط جدید — خیلی مهمه!
-  const product = await getProduct(id);
-
-  if (!product) {
-    return <div className="text-center py-20 text-2xl">محصول پیدا نشد</div>
-  }
+export default function ClientProduct({ product }) {
+  const { addToCart } = useCart();
 
   return (
     <div className="max-w-6xl mx-auto p-8">
@@ -38,7 +20,10 @@ export default async function ProductPage({ params }) {
           </div>
           <p className="text-3xl font-bold text-indigo-600 mb-8">{product.price}</p>
           <p className="text-lg text-gray-700 mb-8">{product.description}</p>
-          <button className="bg-indigo-600 text-white px-8 py-4 rounded-xl text-xl font-bold hover:bg-indigo-700 transition">
+          <button
+            onClick={() => addToCart({ id: product.id, name: product.name, price: product.priceNumber })}
+            className="bg-indigo-600 text-white px-8 py-4 rounded-xl text-xl font-bold hover:bg-indigo-700 transition"
+          >
             افزودن به سبد خرید
           </button>
         </div>
