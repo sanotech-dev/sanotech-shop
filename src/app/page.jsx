@@ -1,8 +1,19 @@
+'use client';
+
 import Link from 'next/link'
+import { useCart } from '@/context/CartContext'
 
 export default function Home() {
+  const { getCartCount } = useCart();
+
   return (
     <div className="max-w-6xl mx-auto p-8">
+      <div className="text-right mb-8">
+        <Link href="/cart" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 inline-block">
+          سبد خرید ({getCartCount()} مورد)
+        </Link>
+      </div>
+
       <h1 className="text-5xl font-bold text-center text-indigo-700 mb-12">
         Sanotech Shop
       </h1>
