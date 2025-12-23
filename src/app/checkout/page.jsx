@@ -16,8 +16,7 @@ export default function CheckoutPage() {
       alert('لطفاً همه فیلدها رو پر کن');
       return;
     }
-    alert(`سفارش شما با موفقیت ثبت شد!\nمجموع: ${getCartTotal().toLocaleString()} تومان\nبه زودی با شما تماس می‌گیریم`);
-    // بعداً سبد خرید رو خالی می‌کنیم
+    window.location.href = '/order-success'
   };
 
   if (cart.length === 0) {
