@@ -8,7 +8,7 @@ const products = [
   { id: '2', name: 'موس گیمینگ RGB', price: '۲,۵۰۰,۰۰۰ تومان' },
   { id: '3', name: 'کیبورد مکانیکال', price: '۴,۲۰۰,۰۰۰ تومان' },
   { id: '4', name: 'هدست گیمینگ', price: '۳,۸۰۰,۰۰۰ تومان' },
-]
+];
 
 export default function Home() {
   const { getCartCount } = useCart();
@@ -27,7 +27,11 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {products.map(product => (
-          <Link key={product.id} href={`/product/${product.id}`} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition">
+          <Link
+            key={product.id}
+            href={`/product/${product.id}`}
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition"
+          >
             <div className="bg-gray-200 dark:bg-gray-700 h-48 rounded-xl mb-4"></div>
             <h2 className="text-2xl font-bold">{product.name}</h2>
             <p className="text-xl text-indigo-600 dark:text-indigo-400 mt-2">{product.price}</p>
