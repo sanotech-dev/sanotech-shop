@@ -1,4 +1,4 @@
-'use client'; // خیلی مهمه! برای Next.js
+'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
@@ -7,7 +7,6 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  // لود از localStorage وقتی صفحه باز می‌شه
   useEffect(() => {
     const savedCart = localStorage.getItem('sanotech-cart');
     if (savedCart) {
@@ -15,7 +14,6 @@ export function CartProvider({ children }) {
     }
   }, []);
 
-  // ذخیره در localStorage هر بار که cart عوض شد
   useEffect(() => {
     localStorage.setItem('sanotech-cart', JSON.stringify(cart));
   }, [cart]);
@@ -37,8 +35,8 @@ export function CartProvider({ children }) {
   };
 
   const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+};
 
   const getCartCount = () => {
     return cart.reduce((count, item) => count + item.quantity, 0);

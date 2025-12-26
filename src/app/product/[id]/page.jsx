@@ -1,19 +1,9 @@
 import ClientProduct from './ClientProduct'
 
 async function getProduct(id) {
-  const products = {
-    "1": {
-      id: "1",
-      name: "لپ‌تاپ گیمینگ Sanotech Pro",
-      price: "۸۵,۰۰۰,۰۰۰ تومان",
-      priceNumber: 85000000,
-      stock: 12,
-      description: "لپ‌تاپ حرفه‌ای با RTX 4070، 32GB RAM، 1TB SSD",
-      rating: 4.8,
-      reviews: 127
-    }
-  }
-  return products[id] || null
+  const res = await fetch(`http://localhost:5000/api/products`);
+  const products = await res.json();
+  return products.find(p => p.id === id) || null;
 }
 
 export default async function ProductPage({ params }) {

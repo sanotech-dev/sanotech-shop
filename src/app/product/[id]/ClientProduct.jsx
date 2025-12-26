@@ -10,7 +10,7 @@ export default function ClientProduct({ product }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="relative h-96 md:h-full">
           <Image
-            src="/laptop.jpg"
+            src={product.image || "/laptop.jpg"}
             alt={product.name}
             fill
             className="object-cover rounded-2xl"
