@@ -1,17 +1,19 @@
-'use client';
+'use client'
 
 import Link from 'next/link'
 import { useCart } from '@/context/CartContext'
-
-const products = [
-  { id: '1', name: 'لپ‌تاپ گیمینگ Pro', price: '۸۵,۰۰۰,۰۰۰ تومان' },
-  { id: '2', name: 'موس گیمینگ RGB', price: '۲,۵۰۰,۰۰۰ تومان' },
-  { id: '3', name: 'کیبورد مکانیکال', price: '۴,۲۰۰,۰۰۰ تومان' },
-  { id: '4', name: 'هدست گیمینگ', price: '۳,۸۰۰,۰۰۰ تومان' },
-];
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const { getCartCount } = useCart();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/products')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <div className="max-w-6xl mx-auto p-8">
@@ -34,7 +36,7 @@ export default function Home() {
           >
             <div className="bg-gray-200 dark:bg-gray-700 h-48 rounded-xl mb-4"></div>
             <h2 className="text-2xl font-bold">{product.name}</h2>
-            <p className="text-xl text-indigo-600 dark:text-indigo-400 mt-2">{product.price}</p>
+            <p className="text-xl text-indigo-600 dark:text-indigo-400 mt-2">{product.priceText}</p>
           </Link>
         ))}
       </div>
