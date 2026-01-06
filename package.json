@@ -10,7 +10,9 @@
     "dev:all": "concurrently \"npm run dev\" \"cd ../sanotech-backend && node server.js\""
   },
   "dependencies": {
+    "autoprefixer": "^10.4.23",
     "next": "16.1.0",
+    "postcss": "^8.5.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwindcss": "^3.4.19"
